@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AddQSODialog</class>
+ <widget class="QDialog" name="AddQSODialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="7" column="0">
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>Note</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="3">
+      <widget class="QLineEdit" name="RSTSentLineEdit">
+       <property name="text">
+        <string>599</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1" colspan="3">
+      <widget class="QLineEdit" name="freqLineEdit"/>
+     </item>
+     <item row="0" column="3">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="pinnedCheckBox">
+         <property name="text">
+          <string>Pinned</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Call Sign</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1" colspan="3">
+      <widget class="QTextEdit" name="contentTextEdit">
+       <property name="tabChangesFocus">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Band</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="3">
+      <widget class="QComboBox" name="modeComboBox">
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+       <property name="currentText">
+        <string>AM</string>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <item>
+        <property name="text">
+         <string>AM</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>CW</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FM</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FT4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FT8</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SSB</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SSTV</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="1" colspan="3">
+      <widget class="QLineEdit" name="callLineEdit"/>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_10">
+       <property name="text">
+        <string>Frequency (MHz)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="2">
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>RST Sent</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="dateLineEdit"/>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>RST Rvcd</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>UTC</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="RSTRcvdLineEdit">
+       <property name="text">
+        <string>599</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Mode</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
+      <widget class="QLineEdit" name="utcLineEdit"/>
+     </item>
+     <item row="3" column="1">
+      <widget class="QComboBox" name="bandComboBox">
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>160m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>80m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>60m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>40m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>30m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>20m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>18m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>15m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>12m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>10m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>6m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>70cm</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>23cm</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>13cm</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="7" column="1" colspan="3">
+      <widget class="QTextEdit" name="noteTextEdit">
+       <property name="tabChangesFocus">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>Content Summary</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Date</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0" colspan="4">
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="2">
+        <widget class="QPushButton" name="sendQSLPushButton">
+         <property name="text">
+          <string>Send QSL...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="recvQSLPushButton">
+         <property name="text">
+          <string>Receive QSL...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="calcelPushButton">
+         <property name="text">
+          <string>Cancel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QPushButton" name="addQSOPushButton">
+         <property name="text">
+          <string>Add QSO</string>
+         </property>
+         <property name="default">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="deletePushButton">
+         <property name="text">
+          <string>Delete this QSO</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>callLineEdit</tabstop>
+  <tabstop>dateLineEdit</tabstop>
+  <tabstop>utcLineEdit</tabstop>
+  <tabstop>bandComboBox</tabstop>
+  <tabstop>modeComboBox</tabstop>
+  <tabstop>freqLineEdit</tabstop>
+  <tabstop>RSTRcvdLineEdit</tabstop>
+  <tabstop>RSTSentLineEdit</tabstop>
+  <tabstop>contentTextEdit</tabstop>
+  <tabstop>noteTextEdit</tabstop>
+  <tabstop>addQSOPushButton</tabstop>
+  <tabstop>calcelPushButton</tabstop>
+  <tabstop>recvQSLPushButton</tabstop>
+  <tabstop>sendQSLPushButton</tabstop>
+  <tabstop>deletePushButton</tabstop>
+  <tabstop>pinnedCheckBox</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
