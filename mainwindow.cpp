@@ -8,6 +8,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QFileDialog>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -181,7 +182,7 @@ void MainWindow::on_pushButton_clicked()
         QFile file(fileName);
         if(!file.open(QIODevice::ReadOnly))
         {
-            qDebug() << "Open ADIF File Error!";
+            QMessageBox::information(this,"QSL Manager","Open ADIF File Error!",QMessageBox::Ok);
             return;
         }
         QTextStream fileStream(&file);
@@ -202,7 +203,7 @@ void MainWindow::on_pushButton_clicked()
                 }
                 if(buf.toLower()!="eoh")
                 {
-                    qDebug() << "ADIF File Format Error!";
+                    QMessageBox::information(this,"QSL Manager","ADIF File Format Error!",QMessageBox::Ok);
                     return;
                 }
                 break;
@@ -287,7 +288,7 @@ void MainWindow::on_pushButton_clicked()
                         QStringList list = keyBuf.split(":");
                         if(list.length() <= 1 || list.length() > 2)
                         {
-                            qDebug() << "ADIF File Format Error!";
+                            QMessageBox::information(this,"QSL Manager","Open ADIF File Error!",QMessageBox::Ok);
                             return;
                         }
                         QPair<QString, QString>pairBuf;
@@ -304,7 +305,10 @@ void MainWindow::on_pushButton_clicked()
             }
 
         }
-        qDebug() << found << "QSO(s) found. " << added << "QSO(s) added. " << dulp << "QSO(s) duplicated" ;
+        QMessageBox::information(this,"QSL Manager",QString("ADIF File Imported.\n"
+                                                              "\t %1 QSO(s) Found,\n"
+                                                              "\t %2 QSO(s) Added,\n"
+                                                              "\t %3 QSO(s) Duplicated.").arg(found).arg(added).arg(dulp),QMessageBox::Ok);
         file.close();
         refreshTable();
     }
@@ -319,7 +323,7 @@ void MainWindow::on_pushButton_4_clicked()
         QFile file(strSaveName);
         if(!file.open(QIODevice::WriteOnly|QIODevice::Text))
         {
-            qDebug() << "Open ADIF File Error!";
+            QMessageBox::information(this,"QSL Manager","Open ADIF File Error!",QMessageBox::Ok);
             return;
         }
         QTextStream stream(&file);

@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QMessageBox>
 
 AddQSODialog::AddQSODialog(QWidget *parent)
     : QDialog(parent)
@@ -33,6 +34,7 @@ void AddQSODialog::receiveUserDataFromAddQso(QString myCallsign, QString callsig
     ui->recvQSLPushButton->setEnabled(false);
     ui->sendQSLPushButton->setEnabled(false);
     ui->deletePushButton->setEnabled(false);
+    ui->pinnedCheckBox->setEnabled(true);
 
     ui->addQSOPushButton->setText("Add QSO");
 }
@@ -57,6 +59,8 @@ void AddQSODialog::reveiveQsoDataFromMain(QString myCallsign, QStringList list)
     ui->sendQSLPushButton->setEnabled(true);
     ui->deletePushButton->setEnabled(true);
 
+    ui->pinnedCheckBox->setEnabled(false);
+
     ui->addQSOPushButton->setText("Modify QSO");
 }
 
@@ -68,11 +72,11 @@ void AddQSODialog::on_calcelPushButton_clicked()
 
 void AddQSODialog::on_addQSOPushButton_clicked()
 {
-    if(ui->callLineEdit->text().isEmpty())qDebug() << "Callsign cannot be Empty!";
-    else if(ui->dateLineEdit->text().isEmpty())qDebug() << "QSO Date cannot be Empty!";
-    else if(ui->utcLineEdit->text().isEmpty())qDebug() << "QSO Time cannot be Empty!";
-    else if(ui->bandComboBox->currentText().isEmpty())qDebug() << "QSO Date cannot be Empty!";
-    else if(ui->modeComboBox->currentText().isEmpty())qDebug() << "QSO Date cannot be Empty!";
+    if(ui->callLineEdit->text().isEmpty())QMessageBox::information(this,"QSL Manager","Callsign cannot be Empty!",QMessageBox::Ok);
+    else if(ui->dateLineEdit->text().isEmpty())QMessageBox::information(this,"QSL Manager","QSO Date cannot be Empty!",QMessageBox::Ok);
+    else if(ui->utcLineEdit->text().isEmpty())QMessageBox::information(this,"QSL Manager","QSO Time cannot be Empty!",QMessageBox::Ok);
+    else if(ui->bandComboBox->currentText().isEmpty())QMessageBox::information(this,"QSL Manager","Band cannot be Empty!",QMessageBox::Ok);
+    else if(ui->modeComboBox->currentText().isEmpty())QMessageBox::information(this,"QSL Manager","Mode cannot be Empty!",QMessageBox::Ok);
     else
     {
         bool aaa = false;

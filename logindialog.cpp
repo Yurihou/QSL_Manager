@@ -8,22 +8,9 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QSettings>
+#include <QMessageBox>
 
-QString stringXOR(QString str, QString key)
-{
-    if(key.isEmpty())key = "114514";
-    while(key.length() < str.length())key.append(key);
-    if(key.length() > str.length())key = key.left(str.length());
-    QByteArray bs1 = str.toLatin1();
-    QByteArray bs2 = key.toLatin1();
-    for(int i=0; i<str.length(); i++)
-    {
-        bs1[i] = bs1[i] ^ bs2[i];
-    }
-
-    QString result;
-    return result.prepend(bs1);
-}
+#include "stringxor.h"
 
 LoginDialog::LoginDialog(QWidget *parent)
     : QDialog(parent)
@@ -56,13 +43,14 @@ LoginDialog::LoginDialog(QWidget *parent)
         sq.exec();
 
 
-        create_sql = "insert into users(user, pass, phone, level) values('root', '8888', '114514', 0)";
+        //create_sql = "insert into users(user, pass, phone, level) values('root', '8888', '114514', 0)";
+        create_sql = QString("insert into users(user, pass, phone, level) values('root', '%1', '114514', 0)").arg(stringXOR("8888","root"));
         sq.prepare(create_sql);
         sq.exec();
     }
     else if(sq.size()==1)
     {
-        qDebug() << "Error: sql database is right.";
+        qDebug() << "sql database is right.";
     }
     db.close();
 
@@ -102,21 +90,22 @@ void LoginDialog::on_loginPushButton_clicked()
     int size = sq.at() + 1;
     if(size <= 0)
     {
-        qDebug() << "This User is not Registered yet.";
+        QMessageBox::information(this,"QSL Manager","This User is not Registered yet.",QMessageBox::Ok);
         db.close();
     }
     else
     {
-        QString pass = sq.value(1).toString();
+        QString pass = stringXOR(sq.value(1).toString(), ui->userLineEdit->text());
         int level = sq.value(2).toInt();
         if (pass != ui->passLineEdit->text())
         {
-            qDebug() << "Wrong Username or Password!";
+            QMessageBox::information(this,"QSL Manager","Wrong Username or Password!",QMessageBox::Ok);
             db.close();
         }
         else if(level == 0)
         {
-            qDebug() << "This is root user. Root user function has not developed yet.";
+            QMessageBox::information(this,"QSL Manager","This is root user.\n"
+                                                          "Root user function has not developed yet.",QMessageBox::Ok);
             db.close();
         }
         else
@@ -159,21 +148,21 @@ void LoginDialog::on_regPushButton_clicked()
     int size = sq.at() + 1;
     if(size <= 0)
     {
-        qDebug() << "This User is not Registered yet.";
+        QMessageBox::information(this,"QSL Manager","This User is not Registered yet.",QMessageBox::Ok);
         db.close();
     }
     else
     {
-        QString pass = sq.value(1).toString();
+        QString pass = stringXOR(sq.value(1).toString(), ui->userLineEdit->text());
         int level = sq.value(2).toInt();
         if (pass != ui->passLineEdit->text())
         {
-            qDebug() << "Wrong Username or Password!";
+            QMessageBox::information(this,"QSL Manager","Wrong Username or Password!",QMessageBox::Ok);
             db.close();
         }
         else if(level)
         {
-            qDebug() << "This User is not Permitted to Create new user.";
+            QMessageBox::information(this,"QSL Manager","This User is not Permitted to Create New User.",QMessageBox::Ok);
             db.close();
         }
         else

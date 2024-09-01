@@ -6,6 +6,9 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QMessageBox>
+
+#include "stringxor.h"
 
 RegDialog::RegDialog(QWidget *parent)
     : QDialog(parent)
@@ -44,19 +47,19 @@ void RegDialog::on_OKPushButton_clicked()
     int size = sq.at() + 1;
     if(size > 0)
     {
-        qDebug() << "This Username is already in Use.";
+        QMessageBox::information(this,"QSL Manager","This Username is already in Use.",QMessageBox::Ok);
         db.close();
     }
     else if(ui->passLineEdit->text() != ui->passCfmLineEdit->text())
     {
-        qDebug() << "Two passwords are not Identical. Please Check your Password.";
+        QMessageBox::information(this,"QSL Manager","Two passwords are not Identical. Please Check your Password.",QMessageBox::Ok);
         db.close();
     }
     else
     {
         QString look_for_this = "insert into users (user, pass, phone, level) values('"
                                 + ui->userLineEdit->text() + "', '"
-                                + ui->passLineEdit->text() + "', '"
+                                + stringXOR(ui->passLineEdit->text(), ui->userLineEdit->text()) + "', '"
                                 + ui->phoneLineEdit->text() + "', 1)";
         sq.prepare(look_for_this);
         sq.exec();

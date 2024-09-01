@@ -26,6 +26,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         mainwindow.h mainwindow.cpp mainwindow.ui
         regdialog.h regdialog.cpp regdialog.ui
         addqsodialog.h addqsodialog.cpp addqsodialog.ui
+        stringxor.cpp
+        stringxor.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET QSLManager_1 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
